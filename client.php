@@ -38,17 +38,11 @@ $rpc_server = "/server.php";
 $request = xmlrpc_encode_request("rpc_server", "post");
 //调用rpc_client_call函数把所有请求发送给XML-RPC服务器端后获取信息
 $response = rpc_client_call($host, $port, $rpc_server, $request);
-var_dump($response);
-echo "------------------------------------------------------";
 //分析从服务器端返回的XML，去掉HTTP头信息，并且把XML转为PHP能识别的字符串.
 //这部分在不同的xml返回，不尽相同，要察看后再填写。
 $split = '<?xml version="1.0" encoding="iso-8859-1"?>';
 $xml =  explode($split, $response);
-var_dump($xml);
-echo "------------------------------------------------------";
 $xml = $split . array_pop($xml);
-var_dump($xml);
-echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++";
 $response = xmlrpc_decode($xml);
 
 //输出从RPC服务器端获取的信息
